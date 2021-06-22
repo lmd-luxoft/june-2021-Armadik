@@ -1,121 +1,50 @@
-# Copyright 2019 by Kirill Kanin.
-# All rights reserved.
-
+#!/usr/bin/env python2
 import argparse
-import os
-import sys
-import logging
-import json
-from aiohttp import web
-from server.handler import Handler
-#from server.database import DataBase
-from server.file_service import FileService, FileServiceSigned
-import server.file_service_no_class as FileServiceNoClass
+import server.FileService as FileService
 
+__version__ = "0.0.1"
 
-def commandline_parser() -> argparse.ArgumentParser:
-    """Command line parser.
+def parse_args():
+    """Command line parser."""
+    parser = argparse.ArgumentParser(description='Actions ')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s ' + __version__)
+    parser.add_argument('-f', '--folder', help='work dir', default="test_folder")
 
-    Parse port and working directory parameters from command line.
+    subparsers = parser.add_subparsers(help='sub-commands')
 
-    """
+    create_parser = subparsers.add_parser('create', help='Create file')
+    create_parser.add_argument('file_name',nargs='?', help='New file', default="test.txt")
 
-    pass
+    delete_parser = subparsers.add_parser('delete', help='Delete file')
+    delete_parser.add_argument('file_name', help='Delete file', default="test.txt")
 
+    list_parser = subparsers.add_parser('list', help='Show files')
 
-def get_file_data(path):
-    """Get full info about file.
+    data_parser = subparsers.add_parser('data', help='Show files')
+    data_parser.add_argument('file_name', help='Show data file', default="test.txt")
 
-    Args:
-        path (str): Working directory path.
+    #params = parser.parse_args()
+    #print(str(params))
 
-    Returns:
-        Dict, which contains full info about file. Keys:
-            name (str): name of file with .txt extension.
-            content (str): file content.
-            create_date (str): date of file creation.
-            edit_date (str): date of last file modification.
-            size (int): size of file in bytes.
+    create_parser.set_defaults(func=FileService.create_file)
+    delete_parser.set_defaults(func=FileService.delete_file)
+    list_parser.set_defaults(func=FileService.get_files)
+    data_parser.set_defaults(func=FileService.get_file_data)
 
-    Raises:
-        AssertionError: if file does not exist, filename format is invalid,
-        ValueError: if security level is invalid.
-
-    """
-
-    pass
-
-
-def create_file(path):
-    """Create new .txt file.
-
-    Method generates name of file from random string with digits and latin letters.
-
-    Args:
-        path (str): Working directory path.
-
-    Returns:
-        Dict, which contains name of created file. Keys:
-            name (str): name of file with .txt extension.
-            content (str): file content.
-            create_date (str): date of file creation.
-            size (int): size of file in bytes,
-            user_id (int): user Id.
-
-    Raises:
-        AssertionError: if user_id is not set,
-        ValueError: if security level is invalid.
-
-    """
-
-    pass
-
-
-def delete_file(path):
-    """Delete file.
-
-    Args:
-        path (str): Working directory path.
-
-    Returns:
-        Str with filename with .txt file extension.
-
-    Raises:
-        AssertionError: if file does not exist.
-
-    """
-
-    pass
-
-
-def change_dir(path):
-    """Change working directory.
-
-    Args:
-        path (str): Working directory path.
-
-    Returns:
-        Str with successfully result.
-
-    """
-
-    pass
+    return parser.parse_args()
 
 
 def main():
     """Entry point of app.
 
     Get and parse command line parameters and configure web app.
+
     Command line options:
-    -p --port - port (default: 8080).
-    -f --folder - working directory (absolute or relative path, default: current app folder FileServer).
-    -i --init - initialize database.
+    -f --folder - working directory (absolute or relative path, default: current app folder).
     -h --help - help.
-
     """
-
-    pass
-
+    args = parse_args()
+    args.func(args)
 
 if __name__ == '__main__':
     main()
