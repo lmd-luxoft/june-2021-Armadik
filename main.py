@@ -18,6 +18,9 @@ def parse_args():
     delete_parser = subparsers.add_parser('delete', help='Delete file')
     delete_parser.add_argument('file_name', help='Delete file', default="test.txt")
 
+    read_parser = subparsers.add_parser('read', help='Read file')
+    read_parser.add_argument('file_name', help='Read file', default="test.txt")
+
     list_parser = subparsers.add_parser('list', help='Show files')
 
     data_parser = subparsers.add_parser('data', help='Show files')
@@ -27,6 +30,7 @@ def parse_args():
     #print(str(params))
 
     create_parser.set_defaults(func=FileService.create_file)
+    read_parser.set_defaults(func=FileService.read_file)
     delete_parser.set_defaults(func=FileService.delete_file)
     list_parser.set_defaults(func=FileService.get_files)
     data_parser.set_defaults(func=FileService.get_file_data)

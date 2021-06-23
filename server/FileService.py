@@ -103,6 +103,19 @@ def create_file(args):
 
     pass
 
+def read_file(args):
+    """Read a new file.
+    """
+    data_file = str(args.folder + '/' + args.file_name)
+    print('Проверяю файл:', data_file)
+    try:
+        with open(data_file,'r') as fp:
+            print(fp.readline())
+    except:
+        print('Файл не найден')
+
+    pass
+
 
 def delete_file(args):
     """Delete file.
