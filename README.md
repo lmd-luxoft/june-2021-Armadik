@@ -1,7 +1,7 @@
 
 # File server project
 
-Author is Maxim Suslov.
+Author is Ryzhov Mikhail
 
 ## Сделанные требования
 
