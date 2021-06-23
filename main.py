@@ -4,6 +4,7 @@ import server.FileService as FileService
 
 __version__ = "0.0.1"
 
+
 def parse_args():
     """Command line parser."""
     parser = argparse.ArgumentParser(description='Actions ')
@@ -13,7 +14,7 @@ def parse_args():
     subparsers = parser.add_subparsers(help='sub-commands')
 
     create_parser = subparsers.add_parser('create', help='Create file')
-    create_parser.add_argument('file_name',nargs='?', help='New file', default="test.txt")
+    create_parser.add_argument('file_name', nargs='?', help='New file', default="test.txt")
 
     delete_parser = subparsers.add_parser('delete', help='Delete file')
     delete_parser.add_argument('file_name', help='Delete file', default="test.txt")
@@ -26,9 +27,6 @@ def parse_args():
     data_parser = subparsers.add_parser('data', help='Show files')
     data_parser.add_argument('file_name', help='Show data file', default="test.txt")
 
-    #params = parser.parse_args()
-    #print(str(params))
-
     create_parser.set_defaults(func=FileService.create_file)
     read_parser.set_defaults(func=FileService.read_file)
     delete_parser.set_defaults(func=FileService.delete_file)
@@ -40,15 +38,10 @@ def parse_args():
 
 def main():
     """Entry point of app.
-
-    Get and parse command line parameters and configure web app.
-
-    Command line options:
-    -f --folder - working directory (absolute or relative path, default: current app folder).
-    -h --help - help.
     """
     args = parse_args()
     args.func(args)
+
 
 if __name__ == '__main__':
     main()
