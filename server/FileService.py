@@ -1,5 +1,5 @@
 import os
-
+from datetime import datetime, timezone
 
 def create_dir(work_dir):
     """Создание рабочей директории"""
@@ -42,7 +42,9 @@ def get_file_data(args):
     print('Проверяю файл:', data_file)
     try:
         with open(data_file, 'r') as fp:
-            print(os.stat(data_file))
+            result = os.stat(data_file).st_mtime
+            modified = datetime.fromtimestamp(result, tz=timezone.utc)
+            print('data', modified)
     except:
         print('Файл не найден!')
 
