@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 import argparse
-import server.FileService as FileService
+import server.FileService as fs
 
 __version__ = "0.0.1"
 
@@ -27,11 +27,11 @@ def parse_args():
     data_parser = subparsers.add_parser('data', help='Show files')
     data_parser.add_argument('file_name', help='Show data file', default="test.txt")
 
-    create_parser.set_defaults(func=FileService.create_file)
-    read_parser.set_defaults(func=FileService.read_file)
-    delete_parser.set_defaults(func=FileService.delete_file)
-    list_parser.set_defaults(func=FileService.get_files)
-    data_parser.set_defaults(func=FileService.get_file_data)
+    create_parser.set_defaults(func=fs.create_file)
+    read_parser.set_defaults(func=fs.read_file)
+    delete_parser.set_defaults(func=fs.delete_file)
+    list_parser.set_defaults(func=fs.get_files)
+    data_parser.set_defaults(func=fs.get_file_data)
 
     return parser.parse_args()
 

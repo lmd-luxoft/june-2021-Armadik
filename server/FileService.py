@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timezone
 
+
 def create_dir(work_dir):
     """Создание рабочей директории"""
     if os.path.exists(work_dir):
@@ -38,7 +39,7 @@ def get_files(args):
 def get_file_data(args):
     """Get full info about file.
     """
-    data_file = str(args.folder + '/' + args.file_name)
+    data_file = str(args.folder + '/' + args.file_name)  # заменить на os.join
     print('Проверяю файл:', data_file)
     try:
         with open(data_file, 'r') as fp:
