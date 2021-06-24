@@ -1,7 +1,4 @@
 # coding=utf-8
-import os
-import shutil
-
 import pytest
 
 import server.FileService as fs

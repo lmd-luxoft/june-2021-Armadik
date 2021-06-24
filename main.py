@@ -14,18 +14,18 @@ def parse_args():
     subparsers = parser.add_subparsers(help='sub-commands')
 
     create_parser = subparsers.add_parser('create', help='Create file')
-    create_parser.add_argument('file_name', nargs='?', help='New file', default="tests.txt")
+    create_parser.add_argument('file_name', nargs='?', help='New file', default="test.txt")
 
     delete_parser = subparsers.add_parser('delete', help='Delete file')
-    delete_parser.add_argument('file_name', help='Delete file', default="tests.txt")
+    delete_parser.add_argument('file_name', help='Delete file', default="test.txt")
 
     read_parser = subparsers.add_parser('read', help='Read file')
-    read_parser.add_argument('file_name', help='Read file', default="tests.txt")
+    read_parser.add_argument('file_name', help='Read file', default="test.txt")
 
     list_parser = subparsers.add_parser('list', help='Show files')
 
     data_parser = subparsers.add_parser('data', help='Show files')
-    data_parser.add_argument('file_name', help='Show data file', default="tests.txt")
+    data_parser.add_argument('file_name', help='Show data file', default="test.txt")
 
     create_parser.set_defaults(func=fs.create_file)
     read_parser.set_defaults(func=fs.read_file)
