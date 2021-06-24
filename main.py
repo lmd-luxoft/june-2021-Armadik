@@ -41,6 +41,7 @@ def main():
     """
     args = parse_args()
     args.func(args)
+    print(fs.read_file(args))
 
 
 if __name__ == '__main__':
