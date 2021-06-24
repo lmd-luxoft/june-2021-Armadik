@@ -5,15 +5,8 @@ from datetime import datetime, timezone
 def create_dir(work_dir):
     """Создание рабочей директории"""
     if os.path.exists(work_dir):
-        print('КАТАЛОГ:', work_dir)
-        # Проверяем пустой ли каталог
-        if not os.listdir(work_dir):
-            print('Пустой')
-        else:
-            # Выводим список файлов
-            print('Список объектов в нем: ', os.listdir(work_dir))
+        pass
     else:
-        print('Создание директории:', work_dir)
         # Создаем директорию для файла
         os.mkdir(work_dir)
 

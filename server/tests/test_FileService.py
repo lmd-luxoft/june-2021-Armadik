@@ -32,49 +32,23 @@ class Test_change_dir:
         """
         fs.create_dir('.')
 
-    def test_incorrect_value2(self):
+    def test_incorrect_value2(self, function_fix2):
         """Передать .. в качестве значения
 
         Ожидаемый результат: возбуждение исключения ValueError
         """
         fs.create_dir('..')
 
-    @pytest.mark.skip(reason="no way of currently testing this")
     def test_incorrect_value3(self):
         """Передать ../something в качестве значения
 
         Ожидаемый результат: возбуждение исключения ValueError
         """
-        assert False
+        fs.create_dir('../something')
+
 
     @pytest.mark.skip(reason="no way of currently testing this")
-    def test_existing_dir_no_create(self):
-        """Перейти в каталог, который уже существует и autocreate=False
-
-        Ожидаемый результат: текущая папка имеет имя ExistingDirectory
-        """
+    def test_skip_sun(self):
+        """Test skip fun"""
         assert False
 
-    @pytest.mark.skip(reason="no way of currently testing this")
-    def test_existing_dir_create(self):
-        """Перейти в каталог, который уже существует и autocreate=True
-
-        Ожидаемый результат: текущая папка имеет имя ExistingDirectory
-        """
-        assert False
-
-    @pytest.mark.skip(reason="no way of currently testing this")
-    def test_non_existing_dir_no_create(self):
-        """Перейти в каталог, который не существует и autocreate=False
-
-        Ожидаемый результат: текущая папка имеет имя отличное от NotExistingDirectory
-        """
-        assert False
-
-    @pytest.mark.skip(reason="no way of currently testing this")
-    def test_non_existing_dir_create(self):
-        """Перейти в каталог, который не существует и autocreate=True
-
-        Ожидаемый результат: текущая папка имеет имя отличное от NotExistingDirectory
-        """
-        assert False
