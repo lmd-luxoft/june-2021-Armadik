@@ -5,9 +5,6 @@ from datetime import datetime, timezone
 def create_dir(work_dir):
     """Создание рабочей директории"""
     if os.path.exists(work_dir):
-        pass
-    else:
-        # Создаем директорию для файла
         os.mkdir(work_dir)
 
 
