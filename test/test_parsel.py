@@ -5,7 +5,7 @@ import main
 import pytest
 
 
-class Test_parsel:
+class Test_parcel:
     def test_error(self):
         """Test error args"""
         with pytest.raises(SystemExit) as e:
