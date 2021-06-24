@@ -29,14 +29,14 @@ class Test_change_dir:
         """
         fs.create_dir('.')
 
-    def test_incorrect_value2(self, function_fix2):
+    def test_correct_value2(self, function_fix2):
         """Передать .. в качестве значения
 
         Ожидаемый результат: успешная отработка
         """
         fs.create_dir('..')
 
-    def test_incorrect_value3(self):
+    def test_correct_value3(self):
         """Передать ../something в качестве значения
 
         Ожидаемый результат: успешная отработка и создание директории something
