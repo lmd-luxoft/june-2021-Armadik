@@ -1,5 +1,9 @@
 import os
 from datetime import datetime, timezone
+import logging
+import config
+
+log = logging.getLogger(__name__)
 
 
 def create_dir(work_dir):
@@ -11,13 +15,17 @@ def create_dir(work_dir):
 def get_files(args):
     """Get info about all files in working directory.
     """
+    log.setLevel(config.loglevel)
+    log.addHandler(config.loghandler)
+    log.info('Get file')
     work_dir = args.folder
     if os.path.exists(work_dir):
         # Проверяем пустой ли каталог
         if not os.listdir(work_dir):
-            print('Пустой')
+            log.warning('Dir clean')
         else:
             # Выводим список файлов
+            log.info('Show files')
             print('Список объектов в нем: ', os.listdir(work_dir))
     else:
         create_dir(args.folder)
@@ -41,11 +49,14 @@ def get_file_data(args):
 def create_file(args):
     """Create a new file.
     """
+    log.setLevel(config.loglevel)
+    log.addHandler(config.loghandler)
+    log.info('fun create file')
     create_dir(args.folder)
     data_file = os.path.join(args.folder, args.file_name)
     create_dir(args.folder)
     with open(data_file, 'w+')as fp:
-        print('Создание файла:', data_file)
+        log.info('Created file: %s', str(data_file))
 
 
 def read_file(args):
