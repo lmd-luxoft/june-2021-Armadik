@@ -97,7 +97,11 @@ def main():
     options.func(options)
 
     # print(fs.read_file(args))  # добавить условие?
+    return loglevel, loghandler
 
 
 if __name__ == '__main__':
-    main()
+    level, handler = main()
+
+    config.logl = level
+    config.logh = handler

@@ -3,7 +3,6 @@ from datetime import datetime, timezone
 import logging
 import config
 
-
 log = logging.getLogger(__name__)
 
 
